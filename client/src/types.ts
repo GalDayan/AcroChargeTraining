@@ -57,11 +57,9 @@ export interface IUiState {
 }
 
 export interface IAuth {
-  isFakeData: boolean;
   currentUser: CurrentUser | null;
   err: any;
   isLoading: boolean;
-  isLoggedIn: boolean;
 }
 
 export interface ITodoTable {
