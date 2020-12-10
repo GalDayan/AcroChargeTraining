@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { Button, makeStyles, Grid } from '@material-ui/core';
+
 import AuthLinks from '../components/auth-links/AuthLinks';
 
 const useStyles = makeStyles((theme) => ({

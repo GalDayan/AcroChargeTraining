@@ -13,12 +13,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProfile } from './redux/actions/auth/actions';
 import { IStore } from './types';
 
-import PrivateRoute from './components/private-component';
+import PrivateRoute from './components/private-route';
 
 import './App.css';
 
 function App() {
   const dispatch = useDispatch();
+
   const history = useHistory();
 
   const { currentUser, isLoading } = useSelector((state: IStore) => state.auth);

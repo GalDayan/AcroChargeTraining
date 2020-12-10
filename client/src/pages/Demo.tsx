@@ -70,8 +70,9 @@ const header = [
 const Demo = () => {
   const [newTodo, setNewTodo] = useState<string>('');
 
-  const classes = useStyles();
   const dispatch = useDispatch();
+
+  const classes = useStyles();
 
   const todoState = useSelector((state: IStore) => state.todo);
   const authState = useSelector((state: IStore) => state.auth);
@@ -83,13 +84,15 @@ const Demo = () => {
     };
   }, []);
 
-  const onDeleteTodo = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onDeleteTodoHandler = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     return (todoId: string) => {
       dispatch(todoActions.deleteTodo(todoId));
     };
   };
 
-  const onAddTodo = (e: React.FormEvent) => {
+  const onAddTodoHandler = (e: React.FormEvent) => {
     e.preventDefault();
     if (newTodo.trim()) {
       dispatch(todoActions.addTodo(newTodo));
@@ -97,7 +100,9 @@ const Demo = () => {
     }
   };
 
-  const onCompleteTodo = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onCompleteTodoHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     return (checked: boolean) => {
       return (id: string) => {
         dispatch(todoActions.completeTodo(id, checked));
@@ -105,7 +110,7 @@ const Demo = () => {
     };
   };
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const content = e.target.value;
     setNewTodo(content);
   };
@@ -121,17 +126,16 @@ const Demo = () => {
           </div>
           <div className={classes.title}>Your Todo List</div>
           <div className={classes.formWrapper}>
-            <form className={classes.form} onSubmit={onAddTodo}>
+            <form className={classes.form} onSubmit={onAddTodoHandler}>
               <TextField
                 variant="outlined"
                 style={{ marginBottom: '1rem' }}
                 value={newTodo}
-                onChange={onChange}
+                onChange={onChangeHandler}
               />
               <AddButton />
             </form>
           </div>
-
           <TodosTable
             isLoading={todoState.isLoading}
             header={header}
@@ -140,9 +144,9 @@ const Demo = () => {
             placeHolder="Nothing to do"
             headerStyle={{ background: 'black' }}
             rowStyle={{ color: 'black', fontSize: '1.5rem' }}
-            onDeleteTodo={(e, todoId) => onDeleteTodo(e)(todoId)}
+            onDeleteTodo={(e, todoId) => onDeleteTodoHandler(e)(todoId)}
             onCompleteTodo={(e, checked, todoId) =>
-              onCompleteTodo(e)(checked)(todoId)
+              onCompleteTodoHandler(e)(checked)(todoId)
             }
           />
         </div>

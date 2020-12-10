@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as authActions from '../redux/actions/auth/actions';
-import { IStore } from '../types';
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
   const [creds, setCreds] = useState({
     email: '',
     password: ''
   });
+
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     setCreds({

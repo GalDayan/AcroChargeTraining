@@ -37,11 +37,8 @@ const TodosTable: FC<ITodoTable> = ({
   onCompleteTodo,
   stickyHeader = true
 }) => {
-  //
-  //
   const classes = useStyles();
-  //
-  //
+
   return (
     <TableContainer className={classes.root} component={Paper} elevation={6}>
       <Table

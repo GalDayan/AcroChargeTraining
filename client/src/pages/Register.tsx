@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { Link, useHistory } from 'react-router-dom';
-import { UserCreds, IStore } from '../types';
-import { useDispatch, useSelector } from 'react-redux';
+import { UserCreds } from '../types';
+import { useDispatch } from 'react-redux';
 import * as authActions from '../redux/actions/auth/actions';
 
 const Register = () => {
-  const dispatch = useDispatch();
-  const hisotry = useHistory();
   const [creds, setCreds] = useState<UserCreds>({
     email: '',
     password: ''
   });
+
+  const dispatch = useDispatch();
+  const hisotry = useHistory();
 
   useEffect(() => {
     setCreds({
@@ -30,6 +31,7 @@ const Register = () => {
       [id]: value
     }));
   };
+
   const onSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(authActions.register(creds, hisotry));
