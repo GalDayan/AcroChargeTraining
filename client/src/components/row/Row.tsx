@@ -40,7 +40,7 @@ const Row: FC<{
       tabIndex={-1}
       key={`${id}`}
     >
-      <TableCell className={classes.contentTableCell}>
+      <TableCell>
         <div>{id}</div>
       </TableCell>
       <TableCell>

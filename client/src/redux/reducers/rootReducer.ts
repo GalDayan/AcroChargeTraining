@@ -4,7 +4,7 @@ import { uiReducer } from './uiReducer';
 import { authReducer } from './authReducer';
 
 export const rootReducer = combineReducers({
-  todo: transactionReducer,
+  transaction: transactionReducer,
   ui: uiReducer,
   auth: authReducer
 });

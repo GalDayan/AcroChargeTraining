@@ -62,9 +62,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const header = [
-  { id: 'todo', label: 'Todo', minWidth: 320 },
-  { id: 'createdOn', label: 'Created On', minWidth: 150 },
-  { id: 'completed', label: 'Completed', minWidth: 100 }
+  { id: 'todoId', label: 'ID', minWidth: 100 },
+  { id: 'totalPrice', label: 'TotalPrice', minWidth: 150 },
+  { id: 'currency', label: 'Currency', minWidth: 100 },
+  { id: 'customerId', label: 'Customer', minWidth: 100 },
+  { id: 'actions', label: 'Actions', minWidth: 100 }
 ];
 
 const Demo = () => {
@@ -74,7 +76,7 @@ const Demo = () => {
 
   const classes = useStyles();
 
-  const todoState = useSelector((state: IStore) => state.todo);
+  const todoState = useSelector((state: IStore) => state.transaction);
   const authState = useSelector((state: IStore) => state.auth);
 
   useEffect(() => {

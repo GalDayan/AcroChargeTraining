@@ -47,7 +47,7 @@ export interface ITransactionState {
 }
 
 export interface IStore {
-  todo: ITransactionState;
+  transaction: ITransactionState;
   ui: IUiState;
   auth: IAuth;
 }
