@@ -7,7 +7,7 @@ import {
 
 import { TransactionEntity } from 'src/transaction/transaction.entity';
 
-@Entity('customer')
+@Entity('customers')
 export class CustomerEntity {
   @PrimaryColumn({type: 'text'})
   id: string;
