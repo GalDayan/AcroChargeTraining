@@ -12,6 +12,20 @@ export type Transaction = {
   currency: string;
 };
 
+export type Customer = {
+  customerId: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  country: string;
+  city: string;
+  street: string;
+  phone: string;
+  creditCardType: string;
+  creditCardNumber: string;
+};
+
 export type TodosTableHeader = {
   id: string;
   label: string;

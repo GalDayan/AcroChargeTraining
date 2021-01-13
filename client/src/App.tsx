@@ -16,6 +16,8 @@ import { IStore } from './types';
 import PrivateRoute from './components/private-route';
 
 import './App.css';
+import CustomerCard from './components/customer/Customer';
+import CustomerDetails from './pages/CustomerDetails';
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +39,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/customer/:id" component={CustomerDetails} />
 
             <Route
               path="/demo"

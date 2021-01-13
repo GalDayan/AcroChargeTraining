@@ -1,4 +1,4 @@
-import * as types from '../actions/todo/types';
+import * as types from '../actions/transaction/types';
 
 import { ITransactionState, Action } from '../../types';
 

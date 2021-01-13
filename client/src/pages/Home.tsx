@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import CustomerCard from '../components/customer/Customer';
 
 const Home = () => {
   const [welcomeMsg, setWelcomeMsg] = useState<string>('');
@@ -13,7 +14,7 @@ const Home = () => {
 
   return (
     <div className="App-header">
-      <p>{welcomeMsg}</p>
+      {/* <Customer  /> */}
     </div>
   );
 };

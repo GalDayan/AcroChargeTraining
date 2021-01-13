@@ -11,9 +11,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { HttpErrorFilter } from './shared/http-error.filter';
 import { ValidationPipe } from './shared/validation.pipe';
 import { TransactionModule } from './transaction/transaction.module';
+import { CustomerModule } from './customers/customer.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), TodoModule, UserModule, TransactionModule],
+  imports: [TypeOrmModule.forRoot(), TodoModule, UserModule, TransactionModule, CustomerModule],
   controllers: [AppController],
   providers: [
     AppService,

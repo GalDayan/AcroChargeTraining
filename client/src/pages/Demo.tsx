@@ -5,7 +5,7 @@ import AddButton from '../components/add-button/AddButton';
 
 import { IStore } from '../types';
 import { useDispatch, useSelector } from 'react-redux';
-import * as todoActions from '../redux/actions/todo/actions';
+import * as todoActions from '../redux/actions/transaction/actions';
 
 const useStyles = makeStyles((theme: Theme) => ({
   title: {
