@@ -3,8 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, makeStyles, Grid } from '@material-ui/core';
 
-import AuthLinks from '../components/auth-links/AuthLinks';
-
 const useStyles = makeStyles((theme) => ({
   navbar: {
     height: '80px',
@@ -75,9 +73,6 @@ const Navbar = () => {
             </Link>
           </Grid>
         </Grid>
-      </Grid>
-      <Grid item className={classes.authLinks}>
-        <AuthLinks />
       </Grid>
     </Grid>
   );

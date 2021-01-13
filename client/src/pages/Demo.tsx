@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { TextField, makeStyles, Theme } from '@material-ui/core';
 import TodosTable from '../containers/TodosTable';
 import AddButton from '../components/add-button/AddButton';
-
-import { IStore } from '../types';
-import { useDispatch, useSelector } from 'react-redux';
-import * as todoActions from '../redux/actions/transaction/actions';
+import useSWR from 'swr'
+import { Transaction } from '../types';
+import Axios from 'axios';
 
 const useStyles = makeStyles((theme: Theme) => ({
   title: {
@@ -71,26 +70,19 @@ const header = [
 
 const Demo = () => {
   const [newTodo, setNewTodo] = useState<string>('');
-
-  const dispatch = useDispatch();
+  const { data } = useSWR<Transaction[]>('/api/transaction/all', (url: string) =>
+    Axios.get<Transaction[]>(url).then(res => {
+      console.log(res.data);
+      return res.data;
+    }));
 
   const classes = useStyles();
-
-  const todoState = useSelector((state: IStore) => state.transaction);
-  const authState = useSelector((state: IStore) => state.auth);
-
-  useEffect(() => {
-    dispatch(todoActions.getAllTransactions());
-    return () => {
-      dispatch(todoActions.clearTransactions());
-    };
-  }, []);
 
   const onDeleteTodoHandler = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     return (todoId: string) => {
-      dispatch(todoActions.deleteTodo(todoId));
+      // dispatch(todoActions.deleteTodo(todoId));
     };
   };
 
@@ -107,7 +99,7 @@ const Demo = () => {
   ) => {
     return (checked: boolean) => {
       return (id: string) => {
-        dispatch(todoActions.completeTodo(id, checked));
+        // dispatch(todoActions.completeTodo(id, checked));
       };
     };
   };
@@ -134,10 +126,11 @@ const Demo = () => {
               <AddButton />
             </form>
           </div> */}
-          <TodosTable
-            isLoading={todoState.isLoading}
+          {!data && "Loading..."}
+          {data && <TodosTable
+            isLoading={!!data}
             header={header}
-            data={todoState.transactions}
+            data={data!}
             stickyHeader={true}
             placeHolder="Nothing to do"
             headerStyle={{ background: 'black' }}
@@ -147,6 +140,7 @@ const Demo = () => {
               onCompleteTodoHandler(e)(checked)(todoId)
             }
           />
+          }
         </div>
       </div>
     </>
