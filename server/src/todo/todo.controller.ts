@@ -19,9 +19,8 @@ export class TodoController {
   constructor(private todoService: TodoService) {}
 
   @Get('/all')
-  getAllTodos(@Req() req) {
-    const userId = req.user.id;
-    return this.todoService.getAllTodos(userId);
+  getAllTodos() {
+    return this.todoService.getAllTodos();
   }
 
   @Get('/me')

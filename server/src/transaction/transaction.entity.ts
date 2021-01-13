@@ -22,8 +22,8 @@ export class TransactionEntity {
   currency: string;
 
   @ManyToOne(
-    () => CustomerEntity,
-    author => author.transactions,
+    type => CustomerEntity,
+    customer => customer.transactions,
   )
   customer: CustomerEntity;
 }

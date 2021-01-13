@@ -13,13 +13,15 @@ export class TransactionService {
 
   private responseObject = (transaction: TransactionEntity): TransactionSO => {
     return {
-      ...transaction,
-      customer: transaction.customer.sanitizeObject(),
+      id: transaction.id,
+      totalPrice: transaction.total_price,
+      currency: transaction.currency,
+      customerId: transaction.customer.id,
     };
   };
 
   fetchAll = async (): Promise<TransactionSO[]> => {
-    const transactions = await this.transactionRepository.find();
+    const transactions = await this.transactionRepository.find({relations: ['customer']});
     return transactions.map(transaction => {
       return this.responseObject(transaction);
     });

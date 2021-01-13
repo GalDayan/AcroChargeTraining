@@ -47,7 +47,7 @@ export class CustomerEntity {
   cerdit_card_number: string;
 
   @OneToMany(
-    () => TransactionEntity,
+    type => TransactionEntity,
     transaction => transaction.customer,
   )
   transactions: TransactionEntity[];

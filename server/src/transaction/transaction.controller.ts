@@ -7,7 +7,6 @@ export class TransactionController {
 
   @Get('/all')
   fetchAll() {
-    console.log("UFCK")
     return this.transactionService.fetchAll();
   }
 }

@@ -1,5 +1,4 @@
-import { IsString, IsBoolean, IsNumber } from 'class-validator';
-import { CustomerSO } from 'src/customers/customer.dto';
+import { IsString, IsNumber } from 'class-validator';
 
 export class TransactionDTO {
   @IsNumber()
@@ -11,6 +10,8 @@ export class TransactionDTO {
 
 export type TransactionSO = {
   id: string;
-  customer: CustomerSO;
+  customerId: text;
+  totalPrice: number;
+  currency: string;
   token?: string;
 };

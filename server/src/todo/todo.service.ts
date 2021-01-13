@@ -15,6 +15,7 @@ export class TodoService {
   ) {}
 
   private responseOject = (todo: TodoEntity): TodoSO => {
+    console.log(JSON.stringify(todo))
     return {
       ...todo,
       author: todo.author.sanitizeObject(),
@@ -27,16 +28,13 @@ export class TodoService {
     }
   };
 
-  getAllTodos = async (userId: string): Promise<TodoSO[]> => {
-    const user = await this.userRepository.findOne({ where: { id: userId } });
-
+  getAllTodos = async (): Promise<TodoSO[]> => {
     const todos = await this.todoRepository.find({
-      where: { author: user },
       order: { createdOn: 'DESC' },
       relations: ['author'],
     });
     return todos.map(todo => {
-      this.verifyOwnership(todo, userId);
+      // this.verifyOwnership(todo, userId);
       return this.responseOject(todo);
     });
   };
