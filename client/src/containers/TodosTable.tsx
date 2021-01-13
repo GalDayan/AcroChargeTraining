@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Paper, Table, TableContainer, TableBody } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { ITodoTable } from '../types';
+import { TransactionTable } from '../types';
 import TableHeader from '../components/header/Header';
 import RowPlaceHolder from '../components/row/RowPlaceHolder';
 import Row from '../components/row/Row';
@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     overflow: 'auto'
   }
 });
-const TodosTable: FC<ITodoTable> = ({
+const TodosTable: FC<TransactionTable> = ({
   data,
   header,
   headerStyle,
@@ -34,7 +34,6 @@ const TodosTable: FC<ITodoTable> = ({
   placeHolder,
   isLoading,
   onDeleteTodo,
-  onCompleteTodo,
   stickyHeader = true
 }) => {
   const classes = useStyles();
@@ -48,30 +47,16 @@ const TodosTable: FC<ITodoTable> = ({
       >
         <TableHeader data={header} headerStyle={headerStyle} />
         <TableBody>
-          {data.length ? (
-            data.map((todo) => {
-              return (
-                <Row
-                  data={todo}
-                  rowStyle={rowStyle}
-                  onDeleteTodo={(e, id) => onDeleteTodo(e, id)}
-                  onCompleteTodo={(e, checked, id) =>
-                    onCompleteTodo(e, checked, id)
-                  }
-                />
-              );
-            })
-          ) : (
-            <RowPlaceHolder
-              placeHolder={
-                isLoading
-                  ? 'Loading...'
-                  : placeHolder || 'Put your place holder here'
-              }
-              colSpan={header.length}
-              rowStyle={rowStyle}
-            />
-          )}
+          {data.map((todo) => {
+            return (
+              <Row
+                data={todo}
+                rowStyle={rowStyle}
+                onDeleteTodo={(e, id) => onDeleteTodo(e, id)}
+              />
+            );
+          })
+          }
         </TableBody>
       </Table>
     </TableContainer>

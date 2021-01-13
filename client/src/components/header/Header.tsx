@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { TableHead, TableRow, TableCell } from '@material-ui/core';
-import { TodosTableHeader, HeaderStyle } from '../../types';
+import { TransactionTableHeader, HeaderStyle } from '../../types';
 
 const TableHeader: FC<{
-  data: TodosTableHeader[];
+  data: TransactionTableHeader[];
   headerStyle?: HeaderStyle;
 }> = ({ data, headerStyle = {} }) => {
   return (

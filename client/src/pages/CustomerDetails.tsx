@@ -4,7 +4,7 @@ import useSWR from "swr"
 import Axios from "axios";
 import { useParams } from "react-router";
 import CustomerCard from "../components/customer/Customer";
-import { useStyles } from "./Demo";
+import { useStyles } from "./Transactions";
 
 const CustomerDetails = () => {
     const classes = useStyles();
@@ -18,7 +18,7 @@ const CustomerDetails = () => {
     return (
         <div className={classes.demoWrapper}>
             <div style={{ height: '64px' }} />
-            <div className={classes.todoListWrapper}>
+            <div className={classes.contentWrapper}>
                 <div className={classes.title}>Customer Page</div>
 
                 {!id && "You can view only one customer"}

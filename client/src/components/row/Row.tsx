@@ -21,16 +21,11 @@ const useStyles = makeStyles(() => ({
 const Row: FC<{
   data: Transaction;
   rowStyle?: RowStyle;
-  onCompleteTodo: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean,
-    id: string
-  ) => void;
   onDeleteTodo: (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     id: string
   ) => void;
-}> = ({ data, rowStyle = {}, onDeleteTodo, onCompleteTodo }) => {
+}> = ({ data, rowStyle = {}, onDeleteTodo }) => {
   const { currency, customerId, id, totalPrice } = data;
   const classes = useStyles();
 

@@ -37,7 +37,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     height: '100%',
     flexDirection: 'column'
   },
-  todoListWrapper: {
+  contentWrapper: {
     width: '100%',
     maxWidth: '1200px',
     display: 'flex',
@@ -113,19 +113,8 @@ const Demo = () => {
     <>
       <div className={classes.demoWrapper}>
         <div style={{ height: '64px' }} />
-        <div className={classes.todoListWrapper}>
+        <div className={classes.contentWrapper}>
           <div className={classes.title}>Your Transactions</div>
-          {/* <div className={classes.formWrapper}>
-            <form className={classes.form} onSubmit={onAddTodoHandler}>
-              <TextField
-                variant="outlined"
-                style={{ marginBottom: '1rem' }}
-                value={newTodo}
-                onChange={onChangeHandler}
-              />
-              <AddButton />
-            </form>
-          </div> */}
           {!data && "Loading..."}
           {data && <TodosTable
             isLoading={!!data}
@@ -136,9 +125,6 @@ const Demo = () => {
             headerStyle={{ background: 'black' }}
             rowStyle={{ color: 'black', fontSize: '1.5rem' }}
             onDeleteTodo={(e, todoId) => onDeleteTodoHandler(e)(todoId)}
-            onCompleteTodo={(e, checked, todoId) =>
-              onCompleteTodoHandler(e)(checked)(todoId)
-            }
           />
           }
         </div>

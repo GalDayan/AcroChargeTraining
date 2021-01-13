@@ -26,7 +26,7 @@ export type Customer = {
   creditCardNumber: string;
 };
 
-export type TodosTableHeader = {
+export type TransactionTableHeader = {
   id: string;
   label: string;
   minWidth: number;
@@ -76,19 +76,14 @@ export interface IAuth {
   isLoading: boolean;
 }
 
-export interface ITodoTable {
+export interface TransactionTable {
   data: Transaction[];
-  header: TodosTableHeader[];
+  header: TransactionTableHeader[];
   stickyHeader: boolean;
   placeHolder?: string;
   headerStyle?: HeaderStyle;
   rowStyle?: RowStyle;
   isLoading: boolean;
-  onCompleteTodo: (
-    event: React.ChangeEvent<HTMLInputElement>,
-    checked: boolean,
-    id: string
-  ) => void;
   onDeleteTodo: (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     id: string

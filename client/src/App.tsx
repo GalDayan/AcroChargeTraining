@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Home from './pages/Home';
-import Demo from './pages/Demo';
+import Demo from './pages/Transactions';
 import Navbar from './containers/Navbar';
 
 import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
