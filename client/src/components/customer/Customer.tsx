@@ -1,4 +1,5 @@
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, makeStyles, Typography } from "@material-ui/core";
+import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Divider, IconButton, makeStyles, Typography } from "@material-ui/core";
+import { Email, Phone } from "@material-ui/icons";
 import React, { FunctionComponent } from "react";
 
 export interface CustomerProps {
@@ -17,7 +18,7 @@ export interface CustomerProps {
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 600,
+        minWidth: 600,
     },
     media: {
         height: 300,
@@ -25,24 +26,33 @@ const useStyles = makeStyles({
 });
 
 const CustomerCard: FunctionComponent<CustomerProps> = ({ firstName, lastName, gender, country, city,
-    creditCardNumber, creditCardType, customerId, email, phone, street }) => {
+    creditCardNumber, creditCardType, email, phone, street }) => {
     const classes = useStyles();
 
     return (
         <Card className={classes.root}>
-            <CardActionArea>
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        {`${firstName} ${lastName}`}
-                    </Typography>
-                    <Typography variant="body1" color="textSecondary" component="p">
-                        {gender}, From {city}, <b>{country}</b>
-                    </Typography>
-                </CardContent>
-            </CardActionArea>
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                    {`${firstName} ${lastName}`}
+                </Typography>
+                <Typography variant="body1" color="textSecondary" component="p">
+                    {gender}, From {street}, {city}, <b>{country}</b>
+                </Typography>
+
+                <Divider />
+                <Typography variant="caption">
+                    {creditCardNumber}, {creditCardType}
+                </Typography>
+            </CardContent>
+
             <CardActions>
-                <Button size="small" color="primary">
-                    Share
+                <Button>
+                    <Phone fontSize="small" color="primary" />
+                    {phone}
+                </Button>
+                <Button>
+                    <Email fontSize="small" color="primary" />
+                    {email}
                 </Button>
             </CardActions>
         </Card>

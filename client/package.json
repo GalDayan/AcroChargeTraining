@@ -16,6 +16,7 @@
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
     "axios": "^0.19.2",
+    "query-string": "^6.13.8",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
@@ -27,7 +28,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "swr": "^0.4.0",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "use-query-params": "^1.1.9"
   },
   "proxy": "http://server:5500",
   "scripts": {

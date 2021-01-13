@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { TableRow, TableCell, Checkbox, makeStyles } from '@material-ui/core';
 import DeleteButton from '../delete-button/DeleteButton';
 import { Transaction, RowStyle } from '../../types';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   contentTableCell: {
@@ -50,7 +51,7 @@ const Row: FC<{
         <div>{currency}</div>
       </TableCell>
       <TableCell>
-        <div>{customerId}</div>
+        <Link to={`/customer/${customerId}`} target="_blank">{customerId}</Link>
       </TableCell>
       <TableCell>
         <div className={classes.deleteButtonWrapper}>

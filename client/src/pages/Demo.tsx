@@ -6,7 +6,7 @@ import useSWR from 'swr'
 import { Transaction } from '../types';
 import Axios from 'axios';
 
-const useStyles = makeStyles((theme: Theme) => ({
+export const useStyles = makeStyles((theme: Theme) => ({
   title: {
     height: '120px',
     display: 'flex',
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     flex: 1,
     overflowY: 'auto',
     padding: '16px',
-
+    alignItems: 'center',
     [theme.breakpoints.down('md')]: {
       width: ' 90%',
       padding: '0 6px 6px 6px'
