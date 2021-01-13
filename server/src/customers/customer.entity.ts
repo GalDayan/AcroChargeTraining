@@ -5,10 +5,10 @@ import {
   PrimaryColumn,
 } from 'typeorm';
 
-import { TodoEntity } from 'src/todo/todo.entity';
+import { TransactionEntity } from 'src/transaction/transaction.entity';
 
 @Entity('customer')
-export class UserEntity {
+export class CustomerEntity {
   @PrimaryColumn()
   customer_id: string;
 
@@ -46,10 +46,10 @@ export class UserEntity {
   cerdit_card_number: string;
 
   @OneToMany(
-    () => TodoEntity,
-    todo => todo.author,
+    () => TransactionEntity,
+    transaction => transaction.customer,
   )
-  todos: TodoEntity[];
+  transactions: TransactionEntity[];
 }
 
 
