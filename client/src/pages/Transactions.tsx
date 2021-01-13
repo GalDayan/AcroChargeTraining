@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, makeStyles, Theme } from '@material-ui/core';
+import { TextField, makeStyles, Theme, Typography } from '@material-ui/core';
 import TranscationsTable from '../containers/TodosTable';
 import AddButton from '../components/add-button/AddButton';
 import useSWR from 'swr'
 import { Transaction } from '../types';
 import Axios from 'axios';
+import AddOrUpdateForm from '../components/transaction/AddUpdateForm';
 
 export const useStyles = makeStyles((theme: Theme) => ({
   title: {
     height: '120px',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     fontSize: '3rem',
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
+    width: '100%'
   },
   form: {
     width: '100%',
@@ -69,7 +71,8 @@ const header = [
 ];
 
 const Demo = () => {
-  const [newTodo, setNewTodo] = useState<string>('');
+  const [addOrUpdateModalOpened, setAddOrUpdateModalOpened] = useState(false)
+
   const { data, mutate } = useSWR<Transaction[]>('/api/transaction/', (url: string) =>
     Axios.get<Transaction[]>(url).then(res => {
       console.log(res.data);
@@ -82,17 +85,18 @@ const Demo = () => {
     Axios.delete(`/api/transaction/${id}`).then(() => mutate((data) => data?.filter(item => item.id != id)))
   }
 
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const content = e.target.value;
-    setNewTodo(content);
-  };
-
   return (
     <>
+      <AddOrUpdateForm isOpened={addOrUpdateModalOpened} handleClose={() => setAddOrUpdateModalOpened(false)} />
       <div className={classes.demoWrapper}>
         <div style={{ height: '64px' }} />
         <div className={classes.contentWrapper}>
-          <div className={classes.title}>Your Transactions</div>
+          <div className={classes.title}>
+            <Typography variant="h2">
+              Your Transactions
+              </Typography>
+            <AddButton onClick={() => setAddOrUpdateModalOpened(true)} />
+          </div>
           {!data && "Loading..."}
           {data && <TranscationsTable
             header={header}

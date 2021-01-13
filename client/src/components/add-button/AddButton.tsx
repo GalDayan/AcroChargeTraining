@@ -3,10 +3,12 @@ import { Button, Typography } from '@material-ui/core';
 
 const AddButton: FC<{
   style?: CSSProperties;
-}> = ({ style = {} }) => {
+  onClick: () => void;
+}> = ({ style = {}, onClick }) => {
   return (
     <Button
       type="submit"
+      onClick={onClick}
       style={{
         background: '#FF0083',
         color: 'white',

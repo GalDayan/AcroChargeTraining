@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import CustomerCard from '../components/customer/Customer';
+import AddOrUpdateForm from '../components/transaction/AddUpdateForm';
 
 const Home = () => {
   const [welcomeMsg, setWelcomeMsg] = useState<string>('');
@@ -14,7 +14,7 @@ const Home = () => {
 
   return (
     <div className="App-header">
-      {/* <Customer  /> */}
+      <AddOrUpdateForm isOpened={true} handleClose={() => {}} />
     </div>
   );
 };
