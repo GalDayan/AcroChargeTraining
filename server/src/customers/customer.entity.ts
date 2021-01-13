@@ -6,6 +6,7 @@ import {
 } from 'typeorm';
 
 import { TransactionEntity } from 'src/transaction/transaction.entity';
+import { CustomerSO } from './customer.dto';
 
 @Entity('customers')
 export class CustomerEntity {
@@ -50,6 +51,22 @@ export class CustomerEntity {
     transaction => transaction.customer,
   )
   transactions: TransactionEntity[];
+
+  sanitizeObject = (): CustomerSO => {
+    return {
+      customerId: this.id,
+      email: this.email,
+      country: this.country,
+      city: this.city,
+      firstName: this.first_name,
+      lastName: this.last_name,
+      gender: this.gender,
+      phone: this.phone,
+      street: this.street,
+      creditCardType: this.credit_card_type,
+      creditCardNumber: this.cerdit_card_number
+    };
+  };
 }
 
 
