@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import { TableRow, TableCell, Checkbox, makeStyles } from '@material-ui/core';
-import DeleteButton from '../delete-button/DeleteButton';
+import DeleteButton from '../buttons/DeleteButton';
 import { Transaction, RowStyle } from '../../types';
 import { Link } from 'react-router-dom';
+import EditButton from '../buttons/EditButton';
 
 const useStyles = makeStyles(() => ({
   contentTableCell: {
@@ -24,7 +25,10 @@ const Row: FC<{
   onDeleteTransaction: (
     id: string
   ) => void;
-}> = ({ data, rowStyle = {}, onDeleteTransaction }) => {
+  onEditingTransaction: (
+    transaction: Transaction
+  ) => void;
+}> = ({ data, rowStyle = {}, onDeleteTransaction, onEditingTransaction }) => {
   const { currency, customerId, id, totalPrice } = data;
   const classes = useStyles();
 
@@ -50,6 +54,7 @@ const Row: FC<{
       <TableCell>
         <div className={classes.deleteButtonWrapper}>
           <DeleteButton onClick={() => onDeleteTransaction(data.id)} />
+          <EditButton onClick={() => onEditingTransaction(data)} />
         </div>
       </TableCell>
     </TableRow>

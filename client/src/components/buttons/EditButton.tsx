@@ -1,17 +1,15 @@
 import React, { Dispatch, FC } from 'react';
 import { IconButton } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { Edit } from '@material-ui/icons';
 
-const DeleteButton: FC<{
+const EditButton: FC<{
   onClick: Dispatch<React.MouseEvent<HTMLButtonElement, MouseEvent>>;
 }> = ({ onClick }) => {
-  //
-  //
   return (
     <IconButton onClick={(e) => onClick(e)}>
-      <DeleteIcon />
+      <Edit />
     </IconButton>
   );
 };
 
-export default DeleteButton;
+export default EditButton;

@@ -83,4 +83,5 @@ export interface TransactionTable {
   headerStyle?: HeaderStyle;
   rowStyle?: RowStyle;
   onDeleteTransaction: (id: string) => void;
+  onEditingTransaction: (transaction: Transaction) => void;
 }

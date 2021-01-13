@@ -5,7 +5,7 @@ import AddButton from '../components/add-button/AddButton';
 import useSWR from 'swr'
 import { Transaction } from '../types';
 import Axios from 'axios';
-import AddOrUpdateForm from '../components/transaction/AddUpdateForm';
+import AddOrUpdateForm, { AddUpdateTransaction } from '../components/transaction/AddUpdateForm';
 
 export const useStyles = makeStyles((theme: Theme) => ({
   title: {
@@ -72,6 +72,7 @@ const header = [
 
 const Demo = () => {
   const [addOrUpdateModalOpened, setAddOrUpdateModalOpened] = useState(false)
+  const [editedTransaction, setEditedTransaction] = useState<AddUpdateTransaction | undefined>(undefined)
 
   const { data, mutate } = useSWR<Transaction[]>('/api/transaction/', (url: string) =>
     Axios.get<Transaction[]>(url).then(res => {
@@ -85,9 +86,14 @@ const Demo = () => {
     Axios.delete(`/api/transaction/${id}`).then(() => mutate((data) => data?.filter(item => item.id != id)))
   }
 
+  const setEditingTransaction = (transaction: Transaction) => {
+    setEditedTransaction({ ...transaction })
+    setAddOrUpdateModalOpened(true);
+  }
+
   return (
     <>
-      <AddOrUpdateForm isOpened={addOrUpdateModalOpened} handleClose={() => setAddOrUpdateModalOpened(false)} />
+      <AddOrUpdateForm {...editedTransaction} isOpened={addOrUpdateModalOpened} handleClose={() => setAddOrUpdateModalOpened(false)} />
       <div className={classes.demoWrapper}>
         <div style={{ height: '64px' }} />
         <div className={classes.contentWrapper}>
@@ -105,6 +111,7 @@ const Demo = () => {
             headerStyle={{ background: 'black' }}
             rowStyle={{ color: 'black', fontSize: '1.5rem' }}
             onDeleteTransaction={(id) => deleteTransaction(id)}
+            onEditingTransaction={(transaction) => setEditingTransaction(transaction)}
           />
           }
         </div>

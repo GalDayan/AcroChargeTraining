@@ -31,7 +31,8 @@ const TranscationsTable: FC<TransactionTable> = ({
   header,
   headerStyle,
   rowStyle,
-  onDeleteTransaction: onDeleteTodo,
+  onDeleteTransaction,
+  onEditingTransaction,
   stickyHeader = true
 }) => {
   const classes = useStyles();
@@ -45,12 +46,13 @@ const TranscationsTable: FC<TransactionTable> = ({
       >
         <TableHeader data={header} headerStyle={headerStyle} />
         <TableBody>
-          {data.map((todo) => {
+          {data.map((transaction) => {
             return (
               <Row
-                data={todo}
+                data={transaction}
                 rowStyle={rowStyle}
-                onDeleteTransaction={(id) => onDeleteTodo(id)}
+                onDeleteTransaction={(id) => onDeleteTransaction(id)}
+                onEditingTransaction={(transaction) => onEditingTransaction(transaction)}
               />
             );
           })
