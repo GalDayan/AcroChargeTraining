@@ -10,8 +10,7 @@ export class TransactionDTO {
 
 export type TransactionSO = {
   id: string;
-  customerId: text;
+  customerId: string;
   totalPrice: number;
   currency: string;
-  token?: string;
 };

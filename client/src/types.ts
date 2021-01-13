@@ -5,11 +5,11 @@ export type UserCreds = {
   password: string;
 };
 
-export type Todo = {
-  content: string;
-  createdOn: Date;
-  completed: boolean;
+export type Transaction = {
   id: string;
+  customerId: string;
+  totalPrice: number;
+  currency: string;
 };
 
 export type TodosTableHeader = {
@@ -40,14 +40,14 @@ export type Action = {
   payload: any;
 };
 
-export interface ITodoState {
-  todos: Todo[];
+export interface ITransactionState {
+  transactions: Transaction[];
   isLoading: boolean;
   err: any;
 }
 
 export interface IStore {
-  todo: ITodoState;
+  todo: ITransactionState;
   ui: IUiState;
   auth: IAuth;
 }
@@ -63,7 +63,7 @@ export interface IAuth {
 }
 
 export interface ITodoTable {
-  data: Todo[];
+  data: Transaction[];
   header: TodosTableHeader[];
   stickyHeader: boolean;
   placeHolder?: string;

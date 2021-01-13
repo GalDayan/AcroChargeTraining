@@ -1,17 +1,17 @@
 import * as types from '../actions/todo/types';
 
-import { ITodoState, Action } from '../../types';
+import { ITransactionState, Action } from '../../types';
 
-const initialState: ITodoState = {
-  todos: [],
+const initialState: ITransactionState = {
+  transactions: [],
   isLoading: true,
   err: null
 };
 
-export const todoReducer = (
+export const transactionReducer = (
   state = initialState,
   action: Action
-): ITodoState => {
+): ITransactionState => {
   switch (action.type) {
     case types.COMPLETE_TODO:
       return {
@@ -25,7 +25,7 @@ export const todoReducer = (
       return {
         ...state
       };
-    case types.GET_ALL_TODO:
+    case types.GET_ALL_TRANSACTIONS:
       return {
         ...state,
         isLoading: true
@@ -39,40 +39,27 @@ export const todoReducer = (
     case types.ADD_TODO_SUCCESS:
       return {
         ...state,
-        todos: [action.payload, ...state.todos],
+        transactions: [action.payload, ...state.transactions],
         isLoading: false,
         err: null
       };
     case types.DELETE_TODO_SUCCESS:
       return {
         ...state,
-        todos: [...state.todos.filter((item) => item.id !== action.payload)],
+        transactions: [...state.transactions.filter((item) => item.id !== action.payload)],
         isLoading: false,
         err: null
       };
-    case types.GET_ALL_TODOS_SUCCESS:
+    case types.GET_ALL_TRANSACTIONS_SUCCESS:
       return {
         ...state,
-        todos: action.payload,
+        transactions: action.payload,
         isLoading: false,
         err: null
       };
-    case types.COMPLETE_TODO_SUCCESS: {
-      const todos = state.todos.map((todo) => {
-        if (todo.id === action.payload.id)
-          todo.completed = action.payload.checked;
-        return todo;
-      });
+    case types.CLEAR_TRANSACTIONS:
       return {
-        ...state,
-        todos,
-        isLoading: false,
-        err: null
-      };
-    }
-    case types.CLEAR_TODOS:
-      return {
-        todos: [],
+        transactions: [],
         isLoading: true,
         err: null
       };

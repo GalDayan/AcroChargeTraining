@@ -2,30 +2,30 @@ import { Dispatch } from 'react';
 
 import * as types from './types';
 
-import { Todo } from '../../../types';
+import { Transaction } from '../../../types';
 import { setSnackBar } from '../ui/actions';
 
-import * as todoAPI from '../../../api/todo';
+import * as todoAPI from '../../../api/transaction';
 
 //----- GET TODOS ----- //
-const createGetAllTodo = () => {
+const createGetAllTransactions = () => {
   return {
-    type: types.GET_ALL_TODO
+    type: types.GET_ALL_TRANSACTIONS
   };
 };
 
-const getAllTodosSuccess = (data: Todo[]) => {
+const getAllTransactionsSuccess = (data: Transaction[]) => {
   return {
-    type: types.GET_ALL_TODOS_SUCCESS,
+    type: types.GET_ALL_TRANSACTIONS_SUCCESS,
     payload: data
   };
 };
 
-export const getAllTodos = () => async (dispatch: Dispatch<any>) => {
+export const getAllTransactions = () => async (dispatch: Dispatch<any>) => {
   try {
-    dispatch(createGetAllTodo());
-    const res = await todoAPI.getAllTodos();
-    dispatch(getAllTodosSuccess(res.data));
+    dispatch(createGetAllTransactions());
+    const res = await todoAPI.getAllTransaction();
+    dispatch(getAllTransactionsSuccess(res.data));
   } catch (err) {
     dispatch(catchRequestErr(err));
   }
@@ -64,27 +64,27 @@ export const completeTodo = (id: string, checked: boolean) => async (
 };
 
 //----- ADD TODO ----- //
-const createAddTodo = () => {
-  return {
-    type: types.ADD_TODO
-  };
-};
-const addTodoSuccess = (data: Todo) => (dispatch: Dispatch<any>) => {
-  dispatch({
-    type: types.ADD_TODO_SUCCESS,
-    payload: data
-  });
-  dispatch(setSnackBar({ type: 'success', msg: `${data.content} was added` }));
-};
-export const addTodo = (content: string) => async (dispatch: Dispatch<any>) => {
-  try {
-    dispatch(createAddTodo());
-    const res = await todoAPI.addTodo(content);
-    dispatch(addTodoSuccess(res.data));
-  } catch (err) {
-    dispatch(catchRequestErr(err));
-  }
-};
+// const createAddTodo = () => {
+//   return {
+//     type: types.ADD_TODO
+//   };
+// };
+// const addTodoSuccess = (data: Transaction) => (dispatch: Dispatch<any>) => {
+//   dispatch({
+//     type: types.ADD_TODO_SUCCESS,
+//     payload: data
+//   });
+//   dispatch(setSnackBar({ type: 'success', msg: `${data.content} was added` }));
+// };
+// export const addTodo = (content: string) => async (dispatch: Dispatch<any>) => {
+//   try {
+//     dispatch(createAddTodo());
+//     const res = await todoAPI.addTodo(content);
+//     dispatch(addTodoSuccess(res.data));
+//   } catch (err) {
+//     dispatch(catchRequestErr(err));
+//   }
+// };
 
 //----- DELETE TODO ----- //
 const createDeleteTodo = () => {
@@ -119,8 +119,8 @@ const catchRequestErr = (err: any) => (dispatch: Dispatch<any>) => {
   setSnackBar({ type: 'error', msg: err.message });
 };
 
-export const clearTodos = () => {
+export const clearTransactions = () => {
   return {
-    type: types.CLEAR_TODOS
+    type: types.CLEAR_TRANSACTIONS
   };
 };

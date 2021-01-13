@@ -38,8 +38,7 @@ function App() {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
 
-            <PrivateRoute
-              isLoggedIn={!!currentUser}
+            <Route
               path="/demo"
               component={Demo}
             />
@@ -48,17 +47,17 @@ function App() {
             </Route>
           </Switch>
         ) : (
-          <div
-            style={{
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            Loading...
-          </div>
-        )}
+            <div
+              style={{
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              Loading...
+            </div>
+          )}
       </div>
       <SnackBar
         position={{ vertical: 'bottom', horizontal: 'left' }}

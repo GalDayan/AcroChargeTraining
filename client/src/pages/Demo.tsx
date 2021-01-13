@@ -78,9 +78,9 @@ const Demo = () => {
   const authState = useSelector((state: IStore) => state.auth);
 
   useEffect(() => {
-    dispatch(todoActions.getAllTodos());
+    dispatch(todoActions.getAllTransactions());
     return () => {
-      dispatch(todoActions.clearTodos());
+      dispatch(todoActions.clearTransactions());
     };
   }, []);
 
@@ -92,13 +92,13 @@ const Demo = () => {
     };
   };
 
-  const onAddTodoHandler = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newTodo.trim()) {
-      dispatch(todoActions.addTodo(newTodo));
-      setNewTodo('');
-    }
-  };
+  // const onAddTodoHandler = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   if (newTodo.trim()) {
+  //     dispatch(todoActions.addTodo(newTodo));
+  //     setNewTodo('');
+  //   }
+  // };
 
   const onCompleteTodoHandler = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -120,12 +120,8 @@ const Demo = () => {
       <div className={classes.demoWrapper}>
         <div style={{ height: '64px' }} />
         <div className={classes.todoListWrapper}>
-          <div className={classes.userLabel}>
-            {authState.currentUser?.email &&
-              `Hi, ${authState.currentUser?.email}`}
-          </div>
-          <div className={classes.title}>Your Todo List</div>
-          <div className={classes.formWrapper}>
+          <div className={classes.title}>Your Transactions</div>
+          {/* <div className={classes.formWrapper}>
             <form className={classes.form} onSubmit={onAddTodoHandler}>
               <TextField
                 variant="outlined"
@@ -135,11 +131,11 @@ const Demo = () => {
               />
               <AddButton />
             </form>
-          </div>
+          </div> */}
           <TodosTable
             isLoading={todoState.isLoading}
             header={header}
-            data={todoState.todos}
+            data={todoState.transactions}
             stickyHeader={true}
             placeHolder="Nothing to do"
             headerStyle={{ background: 'black' }}

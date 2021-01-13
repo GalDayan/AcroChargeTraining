@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-export const getAllTodos = async () => {
+export const getAllTransaction = async () => {
   try {
     const res = await axios({
       method: 'GET',
-      url: '/api/todo/all'
+      url: '/api/transaction/all'
     });
     return res;
   } catch (err) {

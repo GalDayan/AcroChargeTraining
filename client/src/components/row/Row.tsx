@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { TableRow, TableCell, Checkbox, makeStyles } from '@material-ui/core';
 import DeleteButton from '../delete-button/DeleteButton';
-import { Todo, RowStyle } from '../../types';
+import { Transaction, RowStyle } from '../../types';
 
 const useStyles = makeStyles(() => ({
   contentTableCell: {
@@ -9,9 +9,6 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     fontSize: '1.2rem'
-  },
-  content: {
-    textDecoration: ({ completed }: any) => (completed ? 'line-through' : '')
   },
   deleteButtonWrapper: {
     display: 'flex',
@@ -21,7 +18,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Row: FC<{
-  data: Todo;
+  data: Transaction;
   rowStyle?: RowStyle;
   onCompleteTodo: (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -33,29 +30,32 @@ const Row: FC<{
     id: string
   ) => void;
 }> = ({ data, rowStyle = {}, onDeleteTodo, onCompleteTodo }) => {
-  const { completed, content, createdOn } = data;
-  const classes = useStyles({ completed });
+  const { currency, customerId, id, totalPrice } = data;
+  const classes = useStyles();
 
   return (
     <TableRow
       style={rowStyle}
       hover
       tabIndex={-1}
-      key={`${data.id}_${content}`}
+      key={`${id}`}
     >
       <TableCell className={classes.contentTableCell}>
-        <div className={classes.content}>{content}</div>
+        <div>{id}</div>
+      </TableCell>
+      <TableCell>
+        <div>{totalPrice}</div>
+      </TableCell>
+      <TableCell>
+        <div>{currency}</div>
+      </TableCell>
+      <TableCell>
+        <div>{customerId}</div>
+      </TableCell>
+      <TableCell>
         <div className={classes.deleteButtonWrapper}>
           <DeleteButton onClick={(e) => onDeleteTodo(e, data.id)} />
         </div>
-      </TableCell>
-      <TableCell>{new Date(createdOn).toLocaleString('eu')}</TableCell>
-      <TableCell style={{ textAlign: 'center' }}>
-        <Checkbox
-          checked={completed}
-          onChange={(e, checked) => onCompleteTodo(e, checked, data.id)}
-          id="completed"
-        />
       </TableCell>
     </TableRow>
   );

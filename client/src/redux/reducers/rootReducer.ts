@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import { todoReducer } from './todoReducer';
+import { transactionReducer } from './transactionReducer';
 import { uiReducer } from './uiReducer';
 import { authReducer } from './authReducer';
 
 export const rootReducer = combineReducers({
-  todo: todoReducer,
+  todo: transactionReducer,
   ui: uiReducer,
   auth: authReducer
 });
