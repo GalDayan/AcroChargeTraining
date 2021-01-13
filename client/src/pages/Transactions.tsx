@@ -74,11 +74,8 @@ const Demo = () => {
   const [addOrUpdateModalOpened, setAddOrUpdateModalOpened] = useState(false)
   const [editedTransaction, setEditedTransaction] = useState<AddUpdateTransaction | undefined>(undefined)
 
-  const { data, mutate } = useSWR<Transaction[]>('/api/transaction/', (url: string) =>
-    Axios.get<Transaction[]>(url).then(res => {
-      console.log(res.data);
-      return res.data;
-    }));
+  const { data, mutate, revalidate } = useSWR<Transaction[]>('/api/transaction/', (url: string) =>
+    Axios.get<Transaction[]>(url).then(res => res.data));
 
   const classes = useStyles();
 
@@ -91,9 +88,14 @@ const Demo = () => {
     setAddOrUpdateModalOpened(true);
   }
 
+  const finishEditOrAddTransaction = () => {
+    setAddOrUpdateModalOpened(false);
+    revalidate();
+  }
+
   return (
     <>
-      <AddOrUpdateForm {...editedTransaction} isOpened={addOrUpdateModalOpened} handleClose={() => setAddOrUpdateModalOpened(false)} />
+      <AddOrUpdateForm {...editedTransaction} isOpened={addOrUpdateModalOpened} handleClose={finishEditOrAddTransaction} />
       <div className={classes.demoWrapper}>
         <div style={{ height: '64px' }} />
         <div className={classes.contentWrapper}>
