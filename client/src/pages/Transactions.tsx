@@ -70,7 +70,7 @@ const header = [
 
 const Demo = () => {
   const [newTodo, setNewTodo] = useState<string>('');
-  const { data } = useSWR<Transaction[]>('/api/transaction/all', (url: string) =>
+  const { data, mutate } = useSWR<Transaction[]>('/api/transaction/all', (url: string) =>
     Axios.get<Transaction[]>(url).then(res => {
       console.log(res.data);
       return res.data;
@@ -78,31 +78,9 @@ const Demo = () => {
 
   const classes = useStyles();
 
-  const onDeleteTodoHandler = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    return (todoId: string) => {
-      // dispatch(todoActions.deleteTodo(todoId));
-    };
-  };
-
-  // const onAddTodoHandler = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   if (newTodo.trim()) {
-  //     dispatch(todoActions.addTodo(newTodo));
-  //     setNewTodo('');
-  //   }
-  // };
-
-  const onCompleteTodoHandler = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    return (checked: boolean) => {
-      return (id: string) => {
-        // dispatch(todoActions.completeTodo(id, checked));
-      };
-    };
-  };
+  const deleteTransaction = (id: string) => {
+    Axios.delete(`/api/transaction/${id}`).then(() => mutate((data) => data?.filter(item => item.id != id)))
+  }
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const content = e.target.value;
@@ -117,14 +95,12 @@ const Demo = () => {
           <div className={classes.title}>Your Transactions</div>
           {!data && "Loading..."}
           {data && <TodosTable
-            isLoading={!!data}
             header={header}
             data={data!}
             stickyHeader={true}
-            placeHolder="Nothing to do"
             headerStyle={{ background: 'black' }}
             rowStyle={{ color: 'black', fontSize: '1.5rem' }}
-            onDeleteTodo={(e, todoId) => onDeleteTodoHandler(e)(todoId)}
+            onDeleteTransaction={(id) => deleteTransaction(id)}
           />
           }
         </div>

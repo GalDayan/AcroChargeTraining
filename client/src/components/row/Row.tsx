@@ -21,11 +21,10 @@ const useStyles = makeStyles(() => ({
 const Row: FC<{
   data: Transaction;
   rowStyle?: RowStyle;
-  onDeleteTodo: (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  onDeleteTransaction: (
     id: string
   ) => void;
-}> = ({ data, rowStyle = {}, onDeleteTodo }) => {
+}> = ({ data, rowStyle = {}, onDeleteTransaction }) => {
   const { currency, customerId, id, totalPrice } = data;
   const classes = useStyles();
 
@@ -50,7 +49,7 @@ const Row: FC<{
       </TableCell>
       <TableCell>
         <div className={classes.deleteButtonWrapper}>
-          <DeleteButton onClick={(e) => onDeleteTodo(e, data.id)} />
+          <DeleteButton onClick={() => onDeleteTransaction(data.id)} />
         </div>
       </TableCell>
     </TableRow>

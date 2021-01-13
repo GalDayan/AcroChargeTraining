@@ -80,12 +80,7 @@ export interface TransactionTable {
   data: Transaction[];
   header: TransactionTableHeader[];
   stickyHeader: boolean;
-  placeHolder?: string;
   headerStyle?: HeaderStyle;
   rowStyle?: RowStyle;
-  isLoading: boolean;
-  onDeleteTodo: (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    id: string
-  ) => void;
+  onDeleteTransaction: (id: string) => void;
 }

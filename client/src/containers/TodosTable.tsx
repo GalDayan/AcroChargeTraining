@@ -31,9 +31,7 @@ const TodosTable: FC<TransactionTable> = ({
   header,
   headerStyle,
   rowStyle,
-  placeHolder,
-  isLoading,
-  onDeleteTodo,
+  onDeleteTransaction: onDeleteTodo,
   stickyHeader = true
 }) => {
   const classes = useStyles();
@@ -52,7 +50,7 @@ const TodosTable: FC<TransactionTable> = ({
               <Row
                 data={todo}
                 rowStyle={rowStyle}
-                onDeleteTodo={(e, id) => onDeleteTodo(e, id)}
+                onDeleteTransaction={(id) => onDeleteTodo(id)}
               />
             );
           })
