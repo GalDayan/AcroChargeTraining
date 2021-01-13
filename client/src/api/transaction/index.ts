@@ -4,7 +4,7 @@ export const getAllTransaction = async () => {
   try {
     const res = await axios({
       method: 'GET',
-      url: '/api/transaction/all'
+      url: '/api/transaction/'
     });
     return res;
   } catch (err) {

@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     overflow: 'auto'
   }
 });
-const TodosTable: FC<TransactionTable> = ({
+const TranscationsTable: FC<TransactionTable> = ({
   data,
   header,
   headerStyle,
@@ -61,4 +61,4 @@ const TodosTable: FC<TransactionTable> = ({
   );
 };
 
-export default TodosTable;
+export default TranscationsTable;

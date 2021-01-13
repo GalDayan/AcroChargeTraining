@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, makeStyles, Theme } from '@material-ui/core';
-import TodosTable from '../containers/TodosTable';
+import TranscationsTable from '../containers/TodosTable';
 import AddButton from '../components/add-button/AddButton';
 import useSWR from 'swr'
 import { Transaction } from '../types';
@@ -70,7 +70,7 @@ const header = [
 
 const Demo = () => {
   const [newTodo, setNewTodo] = useState<string>('');
-  const { data, mutate } = useSWR<Transaction[]>('/api/transaction/all', (url: string) =>
+  const { data, mutate } = useSWR<Transaction[]>('/api/transaction/', (url: string) =>
     Axios.get<Transaction[]>(url).then(res => {
       console.log(res.data);
       return res.data;
@@ -94,7 +94,7 @@ const Demo = () => {
         <div className={classes.contentWrapper}>
           <div className={classes.title}>Your Transactions</div>
           {!data && "Loading..."}
-          {data && <TodosTable
+          {data && <TranscationsTable
             header={header}
             data={data!}
             stickyHeader={true}

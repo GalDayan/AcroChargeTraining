@@ -2,10 +2,13 @@ import { IsString, IsNumber } from 'class-validator';
 
 export class TransactionDTO {
   @IsNumber()
-  totalPrice: string;
+  totalPrice: number;
 
   @IsString()
   currency: string;
+
+  @IsString()
+  customerId: string;
 }
 
 export type TransactionSO = {
