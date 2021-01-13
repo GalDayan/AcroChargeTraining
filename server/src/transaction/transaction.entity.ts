@@ -2,11 +2,9 @@ import {
   PrimaryGeneratedColumn,
   Column,
   Entity,
-  CreateDateColumn,
   ManyToOne,
 } from 'typeorm';
-import { UserEntity } from 'src/user/user.entity';
-import { CustomerEntity } from 'src/customers/customer.entity';
+  import { CustomerEntity } from 'src/customers/customer.entity';
 
 @Entity('transcations')
 export class TransactionEntity {
@@ -14,17 +12,17 @@ export class TransactionEntity {
   id: string;
 
   @Column({
-    type: 'double',
+    type: 'integer',
   })
   total_price: number;
 
   @Column({
-    type: 'string',
+    type: 'text',
   })
   currency: string;
 
   @ManyToOne(
-    type => CustomerEntity,
+    () => CustomerEntity,
     author => author.transactions,
   )
   customer: CustomerEntity;

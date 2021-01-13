@@ -9,8 +9,8 @@ import { TransactionEntity } from 'src/transaction/transaction.entity';
 
 @Entity('customer')
 export class CustomerEntity {
-  @PrimaryColumn()
-  customer_id: string;
+  @PrimaryColumn({type: 'text'})
+  id: string;
 
   @Column({
     type: 'text',
