@@ -39,12 +39,7 @@ export class TransactionService {
   createTransaction = async (
     transaction: Partial<TransactionDTO>,
   ): Promise<TransactionSO> => {
-    const customer = await this.customerRepository.findOne({
-      where: { id: transaction.customerId },
-    });
-
-    if (!customer)
-      throw new HttpException('Customer not found', HttpStatus.NOT_FOUND);
+    const customer = await this.getCustomer(transaction.customerId);
 
     const newTransaction = this.transactionRepository.create({
       currency: transaction.currency,
@@ -55,20 +50,53 @@ export class TransactionService {
 
     return this.responseObject(newTransaction);
   };
-  
+
   updateTransaction = async (
     id: string,
     newTransaction: Partial<TransactionDTO>,
   ): Promise<TransactionSO> => {
-    const transaction = await this.transactionRepository.findOne({
-      where: { id },
-    });
+    const transaction = await this.getTransaction(id);
 
     if (!transaction)
       throw new HttpException('Transaction not found', HttpStatus.NOT_FOUND);
 
-    await this.transactionRepository.update({ id }, newTransaction);
+    if (newTransaction.customerId) {
+      const customer = await this.getCustomer(newTransaction.customerId);
+      await this.transactionRepository.update({ id }, { customer });
+    }
 
-    return this.responseObject(transaction);
+    if (newTransaction.customerId) {
+      await this.transactionRepository.update(
+        { id },
+        { currency: newTransaction.currency },
+      );
+    }
+
+    if (newTransaction.totalPrice) {
+      await this.transactionRepository.update(
+        { id },
+        { total_price: newTransaction.totalPrice },
+      );
+    }
+
+    return this.responseObject(await this.getTransaction(id));
   };
+
+  private async getCustomer(customerId: string) {
+    const customer = await this.customerRepository.findOne({
+      where: { id: customerId },
+    });
+
+    if (!customer)
+      throw new HttpException('Customer not found', HttpStatus.NOT_FOUND);
+
+    return customer;
+  }
+
+  private async getTransaction(id: string) {
+    return await this.transactionRepository.findOne({
+      where: { id },
+      relations: ['customer'],
+    });
+  }
 }
