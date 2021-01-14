@@ -1,3 +1,5 @@
+![alt text](loby-img.png)
+
 #### Stack
 
 - React.js
