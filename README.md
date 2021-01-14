@@ -16,7 +16,7 @@ Make sure you have the below installed on your machine.
 - [x] **Docker-Compose** : https://docs.docker.com/compose/install/
 - [x] **Node** : https://nodejs.org/en/
 
-### File structre
+### File structure
 
 ```
 AcroCharge
