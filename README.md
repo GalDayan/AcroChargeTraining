@@ -60,3 +60,7 @@ This is AcroCharge training project.
 ```
 
 it will be served on `http://localhost:3000`
+
+## Disclaimers
+
+There is a huge TODO list. it isn't the completed product but its good enought for MVP
