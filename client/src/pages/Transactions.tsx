@@ -93,6 +93,12 @@ const Demo = () => {
     revalidate();
   }
 
+  useEffect(() => {
+    if (!addOrUpdateModalOpened) {
+      setEditedTransaction(undefined);
+    }
+  }, [addOrUpdateModalOpened])
+
   return (
     <>
       <AddOrUpdateForm {...editedTransaction} isOpened={addOrUpdateModalOpened} handleClose={finishEditOrAddTransaction} />

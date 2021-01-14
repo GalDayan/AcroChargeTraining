@@ -5,6 +5,7 @@ import Axios from "axios";
 import { useParams } from "react-router";
 import CustomerCard from "../components/customer/Customer";
 import { useStyles } from "./Transactions";
+import { Typography } from "@material-ui/core";
 
 const CustomerDetails = () => {
     const classes = useStyles();
@@ -19,7 +20,10 @@ const CustomerDetails = () => {
         <div className={classes.demoWrapper}>
             <div style={{ height: '64px' }} />
             <div className={classes.contentWrapper}>
-                <div className={classes.title}>Customer Page</div>
+                <Typography variant="h2">
+                    Customer Page
+              </Typography>
+                <div className={classes.title}></div>
 
                 {!id && "You can view only one customer"}
                 {id && !data && "Loading..."}

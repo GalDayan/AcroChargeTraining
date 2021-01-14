@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react';
-import Home from './pages/Home';
+import React from 'react';
 import Demo from './pages/Transactions';
 import Navbar from './containers/Navbar';
 
-import { Switch, Route, useHistory, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
-import { IStore } from './types';
 import './App.css';
-import CustomerCard from './components/customer/Customer';
 import CustomerDetails from './pages/CustomerDetails';
 
 function App() {
@@ -16,16 +13,8 @@ function App() {
       <div className="App">
         <Navbar />
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={Demo} />
             <Route path="/customer/:id" component={CustomerDetails} />
-
-            <Route
-              path="/demo"
-              component={Demo}
-            />
-            <Route>
-              <Redirect to="/demo" />
-            </Route>
           </Switch>
       </div>
     </>
