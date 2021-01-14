@@ -11,6 +11,8 @@ services:
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=demo
     restart: always
+    ports:
+      - 5432:5432
     volumes:
       - ./server/database/data/dev:/var/lib/postgresql/data
     container_name: postgres_db

@@ -4,7 +4,7 @@ import {
   Entity,
   ManyToOne,
 } from 'typeorm';
-  import { CustomerEntity } from 'src/customers/customer.entity';
+  import { CustomerEntity } from '../customers/customer.entity';
 
 @Entity('transcations')
 export class TransactionEntity {
@@ -12,7 +12,7 @@ export class TransactionEntity {
   id: string;
 
   @Column({
-    type: 'integer',
+    type: 'double precision',
   })
   total_price: number;
 

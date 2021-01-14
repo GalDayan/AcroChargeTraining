@@ -5,7 +5,7 @@ import {
   PrimaryColumn,
 } from 'typeorm';
 
-import { TransactionEntity } from 'src/transaction/transaction.entity';
+import { TransactionEntity } from '../transaction/transaction.entity';
 import { CustomerSO } from './customer.dto';
 
 @Entity('customers')
