@@ -57,21 +57,6 @@ const Navbar = () => {
               </Button>
             </Link>
           </Grid>
-          <Grid item xs={6}>
-            <Link to="/demo">
-              <Button
-                style={{
-                  background: 'black',
-                  color: 'white',
-                  textDecoration: 'none',
-                  height: '48px',
-                  width: '80px'
-                }}
-              >
-                Demo
-              </Button>
-            </Link>
-          </Grid>
         </Grid>
       </Grid>
     </Grid>

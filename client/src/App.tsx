@@ -1,5 +1,5 @@
 import React from 'react';
-import Demo from './pages/Transactions';
+import Transactions from './pages/Transactions';
 import Navbar from './containers/Navbar';
 
 import { Switch, Route } from 'react-router-dom';
@@ -13,7 +13,7 @@ function App() {
       <div className="App">
         <Navbar />
           <Switch>
-            <Route exact path="/" component={Demo} />
+            <Route exact path="/" component={Transactions} />
             <Route path="/customer/:id" component={CustomerDetails} />
           </Switch>
       </div>

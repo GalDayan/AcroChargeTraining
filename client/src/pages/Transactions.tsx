@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, makeStyles, Theme, Typography } from '@material-ui/core';
-import TranscationsTable from '../containers/TodosTable';
-import AddButton from '../components/add-button/AddButton';
+import TranscationsTable from '../containers/TransactionsTable';
+import AddButton from '../components/buttons/AddButton';
 import useSWR from 'swr'
 import { Transaction } from '../types';
 import Axios from 'axios';
@@ -63,14 +63,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 const header = [
-  { id: 'todoId', label: 'ID', minWidth: 100 },
+  { id: 'transactionId', label: 'ID', minWidth: 100 },
   { id: 'totalPrice', label: 'TotalPrice', minWidth: 150 },
   { id: 'currency', label: 'Currency', minWidth: 100 },
   { id: 'customerId', label: 'Customer', minWidth: 100 },
   { id: 'actions', label: 'Actions', minWidth: 100 }
 ];
 
-const Demo = () => {
+const Transactions = () => {
   const [addOrUpdateModalOpened, setAddOrUpdateModalOpened] = useState(false)
   const [editedTransaction, setEditedTransaction] = useState<AddUpdateTransaction | undefined>(undefined)
 
@@ -128,4 +128,4 @@ const Demo = () => {
   );
 };
 
-export default Demo;
+export default Transactions;
