@@ -70,4 +70,4 @@ it will be served on `http://localhost:3000`
 Currently production mode isn't supported (Need more time that I think is currently irrelevant)
 ## Disclaimers
 
-There is a huge TODO list. it isn't the completed product but its good enought for MVP
+There is a huge TODO list. it isn't the completed product but its good enough for MVP
