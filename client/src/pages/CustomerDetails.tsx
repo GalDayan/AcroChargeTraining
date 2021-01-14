@@ -22,9 +22,7 @@ const CustomerDetails = () => {
             <div className={classes.contentWrapper}>
                 <Typography variant="h2">
                     Customer Page
-              </Typography>
-                <div className={classes.title}></div>
-
+                </Typography>
                 {!id && "You can view only one customer"}
                 {id && !data && "Loading..."}
                 {id && data && (<CustomerCard {...data} />)}
