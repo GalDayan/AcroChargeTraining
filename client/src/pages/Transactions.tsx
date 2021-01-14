@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, makeStyles, Theme, Typography } from '@material-ui/core';
+import { makeStyles, Theme, Typography } from '@material-ui/core';
 import TranscationsTable from '../containers/TransactionsTable';
 import AddButton from '../components/buttons/AddButton';
 import useSWR from 'swr'
@@ -80,7 +80,7 @@ const Transactions = () => {
   const classes = useStyles();
 
   const deleteTransaction = (id: string) => {
-    Axios.delete(`/api/transaction/${id}`).then(() => mutate((data) => data?.filter(item => item.id != id)))
+    Axios.delete(`/api/transaction/${id}`).then(() => mutate((data) => data?.filter(item => item.id !== id)))
   }
 
   const setEditingTransaction = (transaction: Transaction) => {

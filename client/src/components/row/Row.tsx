@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { TableRow, TableCell, Checkbox, makeStyles } from '@material-ui/core';
+import { TableRow, TableCell, makeStyles } from '@material-ui/core';
 import DeleteButton from '../buttons/DeleteButton';
 import { Transaction, RowStyle } from '../../types';
 import { Link } from 'react-router-dom';

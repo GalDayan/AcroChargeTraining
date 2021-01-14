@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { TransactionTable } from '../types';
 import TableHeader from '../components/header/Header';
-import RowPlaceHolder from '../components/row/RowPlaceHolder';
 import Row from '../components/row/Row';
 
 const useStyles = makeStyles({

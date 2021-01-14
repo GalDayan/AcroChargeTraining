@@ -1,4 +1,4 @@
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Divider, IconButton, makeStyles, Typography } from "@material-ui/core";
+import { Button, Card, CardActions, CardContent, Divider, makeStyles, Typography } from "@material-ui/core";
 import { Email, Phone } from "@material-ui/icons";
 import React, { FunctionComponent } from "react";
 
