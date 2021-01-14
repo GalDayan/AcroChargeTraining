@@ -2,9 +2,6 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-import { TodoModule } from './todo/todo.module';
-import { UserModule } from './user/user.module';
-
 import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -14,7 +11,7 @@ import { TransactionModule } from './transaction/transaction.module';
 import { CustomerModule } from './customers/customer.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(), TodoModule, UserModule, TransactionModule, CustomerModule],
+  imports: [TypeOrmModule.forRoot(), TransactionModule, CustomerModule],
   controllers: [AppController],
   providers: [
     AppService,
